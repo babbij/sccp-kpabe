@@ -57,11 +57,11 @@
 				<directory>lib</directory>
 			</resource>
 		</resources>
-		<testResources>
+<!-- 		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>
 			</testResource>
-		</testResources>
+		</testResources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
