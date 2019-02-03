@@ -2,11 +2,11 @@ package com.goodforgoodbusiness.kpabe;
 
 import java.security.KeyPair;
 
-import com.goodforgoodbusiness.kpabe.KPABEInstance;
+import com.goodforgoodbusiness.kpabe.local.KPABELocalInstance;
 
 public class KPABETest {
 	public static void main(String[] args) throws Exception {
-		KPABEInstance abe = KPABEInstance.newKeys();
+		KPABELocalInstance abe = KPABELocalInstance.newKeys();
 		
 //		for (int i = 0; i < 1000; i++) {
 			String cipherText = abe.encrypt("this is a test of the ABE library", "foo|bar|baz");
@@ -14,7 +14,7 @@ public class KPABETest {
 			
 			KeyPair shareKey = abe.shareKey("bar");
 			
-			String clearText = KPABEInstance.decrypt(cipherText, shareKey);
+			String clearText = KPABELocalInstance.decrypt(cipherText, shareKey);
 			System.out.println(clearText);
 //		}
 		

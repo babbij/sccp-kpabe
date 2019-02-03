@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe;
+package com.goodforgoodbusiness.kpabe.local;
 
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -7,17 +7,18 @@ import java.security.PublicKey;
 
 import javax.crypto.SecretKey;
 
-import com.goodforgoodbusiness.kpabe.KPABELibrary.CKeyPair;
-import com.goodforgoodbusiness.kpabe.KPABELibrary.COutString;
+import com.goodforgoodbusiness.kpabe.KPABEException;
 import com.goodforgoodbusiness.kpabe.key.KPABEKey;
 import com.goodforgoodbusiness.kpabe.key.KPABEPublicKey;
 import com.goodforgoodbusiness.kpabe.key.KPABESecretKey;
 import com.goodforgoodbusiness.kpabe.key.KPABEShareKey;
+import com.goodforgoodbusiness.kpabe.local.KPABELibrary.CKeyPair;
+import com.goodforgoodbusiness.kpabe.local.KPABELibrary.COutString;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 
-public class KPABEInstance {
+public class KPABELocalInstance {
 	private static final Object LOCK = new Object();
 	private static final int DECRYPTION_FAILED = 10000;
 	
@@ -41,37 +42,37 @@ public class KPABEInstance {
 		}
 	}
 	
-	public static KPABEInstance newKeys() throws KPABEException {
+	public static KPABELocalInstance newKeys() throws KPABEException {
 		synchronized (LOCK) {
 			CKeyPair.ByReference keyPair = new CKeyPair.ByReference();
 			
 			int result = LIBRARY.newKeyPair(keyPair);
 			checkResult(result);
 			
-			return new KPABEInstance(
+			return new KPABELocalInstance(
 				new KPABEPublicKey(keyPair.getPublicKey()),
 				new KPABESecretKey(keyPair.getSecretKey())
 			);
 		}
 	}
 	
-	public static KPABEInstance forKeys(PublicKey publicKey, SecretKey secretKey) throws InvalidKeyException {
+	public static KPABELocalInstance forKeys(PublicKey publicKey, SecretKey secretKey) throws InvalidKeyException {
 		if ((publicKey instanceof KPABEPublicKey) && (secretKey instanceof KPABESecretKey)) {
-			return new KPABEInstance((KPABEPublicKey)publicKey, (KPABESecretKey)secretKey);
+			return new KPABELocalInstance((KPABEPublicKey)publicKey, (KPABESecretKey)secretKey);
 		}
 		else {
 			throw new InvalidKeyException("Must be ABE keys");
 		}
 	}
 	
-	public static KPABEInstance forKeys(String publicKey, String secretKey) throws InvalidKeyException {
-		return new KPABEInstance(new KPABEPublicKey(publicKey), new KPABESecretKey(secretKey));
+	public static KPABELocalInstance forKeys(String publicKey, String secretKey) throws InvalidKeyException {
+		return new KPABELocalInstance(new KPABEPublicKey(publicKey), new KPABESecretKey(secretKey));
 	}
 	
 	private final KPABEPublicKey publicKey;
 	private final KPABESecretKey secretKey;
 	
-	private KPABEInstance(KPABEPublicKey publicKey, KPABESecretKey secretKey) {
+	private KPABELocalInstance(KPABEPublicKey publicKey, KPABESecretKey secretKey) {
 		this.publicKey = publicKey;
 		this.secretKey = secretKey;
 	}
