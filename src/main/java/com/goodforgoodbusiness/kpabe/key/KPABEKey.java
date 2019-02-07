@@ -2,6 +2,7 @@ package com.goodforgoodbusiness.kpabe.key;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Key;
+import java.util.Arrays;
 
 public abstract class KPABEKey implements Key {
 	private final byte [] encoded;
@@ -32,6 +33,24 @@ public abstract class KPABEKey implements Key {
 	@Override
 	public byte[] getEncoded() {
 		return encoded;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(encoded);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+		
+		if (o instanceof KPABEKey) {
+			return Arrays.equals(this.encoded, ((KPABEKey)o).encoded);
+		}
+		
+		return false;
 	}
 	
 	@Override

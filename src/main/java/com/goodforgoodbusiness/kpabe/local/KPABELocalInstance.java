@@ -77,11 +77,11 @@ public class KPABELocalInstance {
 		this.secretKey = secretKey;
 	}
 	
-	public PublicKey getPublicKey() {
+	public KPABEPublicKey getPublicKey() {
 		return publicKey;
 	}
 	
-	public SecretKey getSecretKey() {
+	public KPABESecretKey getSecretKey() {
 		return secretKey;
 	}
 	
