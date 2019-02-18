@@ -56,6 +56,10 @@ public class KPABELocalInstance {
 		}
 	}
 	
+	public static KPABELocalInstance forKeys(KPABEPublicKey publicKey, KPABESecretKey secretKey) {
+		return new KPABELocalInstance(publicKey, secretKey);
+	}
+	
 	public static KPABELocalInstance forKeys(PublicKey publicKey, SecretKey secretKey) throws InvalidKeyException {
 		if ((publicKey instanceof KPABEPublicKey) && (secretKey instanceof KPABESecretKey)) {
 			return new KPABELocalInstance((KPABEPublicKey)publicKey, (KPABESecretKey)secretKey);
