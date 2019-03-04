@@ -25,7 +25,7 @@ public class KPABELocalInstance {
 	private static final KPABELibrary LIBRARY;
 	
 	static {
-		if (System.getenv("DISABLE_KPABE_AUTOLOOAD") == null) {
+		if (System.getenv("DISABLE_KPABE_AUTOLOAD") == null) {
 			var path = KPABELibraryPath.getLibraryPath();
 			if (path != null) {
 				KPABELibraryPath.addLibraryPath(path);
@@ -33,7 +33,7 @@ public class KPABELocalInstance {
 		}
 		
 		System.loadLibrary("sccp");
-		LIBRARY = (KPABELibrary) Native.load("sccp", KPABELibrary.class);
+		LIBRARY = Native.load("sccp", KPABELibrary.class);
 	}
 	
 	private static void checkResult(int result) throws KPABEException {
