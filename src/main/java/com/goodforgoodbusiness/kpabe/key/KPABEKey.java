@@ -5,6 +5,8 @@ import java.security.Key;
 import java.util.Arrays;
 
 public abstract class KPABEKey implements Key {
+	private static final long serialVersionUID = 1L;
+	
 	private final byte [] encoded;
 	
 	protected KPABEKey(String key) {

@@ -69,7 +69,7 @@ public class KPABELocalInstance {
 		}
 	}
 	
-	public static KPABELocalInstance forKeys(String publicKey, String secretKey) throws InvalidKeyException {
+	public static KPABELocalInstance forKeys(String publicKey, String secretKey) {
 		return new KPABELocalInstance(new KPABEPublicKey(publicKey), new KPABESecretKey(secretKey));
 	}
 	

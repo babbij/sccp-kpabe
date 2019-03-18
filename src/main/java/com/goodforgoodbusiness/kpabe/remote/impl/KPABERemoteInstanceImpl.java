@@ -14,6 +14,8 @@ import com.goodforgoodbusiness.kpabe.local.KPABELocalInstance;
 import com.goodforgoodbusiness.kpabe.remote.KPABERemoteInstance;
 
 public class KPABERemoteInstanceImpl extends UnicastRemoteObject implements KPABERemoteInstance {
+	private static final long serialVersionUID = 1L;
+	
 	private static final Logger log = Logger.getLogger(KPABERemoteInstanceImpl.class);
 	
 	private final KPABELocalInstance instance;

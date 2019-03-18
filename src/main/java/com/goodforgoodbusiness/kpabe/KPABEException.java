@@ -1,6 +1,8 @@
 package com.goodforgoodbusiness.kpabe;
 
 public class KPABEException extends Exception {
+	private static final long serialVersionUID = 1L;
+
 	public static enum ErrorResult {
 		OpenABE_ERROR_INVALID_CONTEXT(2), OpenABE_ERROR_INVALID_CIPHERTEXT(3), OpenABE_ERROR_INVALID_GROUP_PARAMS(4),
 		OpenABE_ERROR_INVALID_PARAMS(5), OpenABE_ERROR_INVALID_KEY(6), OpenABE_ERROR_OUT_OF_MEMORY(7),
