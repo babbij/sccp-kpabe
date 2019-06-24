@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe.local;
+package com.goodforgoodbusiness.kpabe.jna;
 
 import java.io.File;
 import java.lang.reflect.Field;

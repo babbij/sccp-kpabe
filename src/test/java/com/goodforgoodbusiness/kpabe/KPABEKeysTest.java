@@ -1,12 +1,10 @@
 package com.goodforgoodbusiness.kpabe;
 
-import com.goodforgoodbusiness.kpabe.local.KPABELocalInstance;
-
 public class KPABEKeysTest {
 	public static void main(String[] args) throws Exception {
-		KPABELocalInstance abe = KPABELocalInstance.newKeys();
+		var keyPair = KPABEKeyManager.newKeys();
 		
-		System.out.println("public = " + abe.getPublicKey().toString());
-		System.out.println("secret = " + abe.getSecretKey().toString());
+		System.out.println("public = " + keyPair.getPublic().toString());
+		System.out.println("secret = " + keyPair.getSecret().toString());
 	}
 }

@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe.local;
+package com.goodforgoodbusiness.kpabe.jna;
 
 import java.io.Closeable;
 import java.io.UnsupportedEncodingException;
@@ -9,7 +9,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
-interface KPABELibrary extends Library {
+public interface KPABELibrary extends Library {
 	static class COutString extends Structure {
 		public static class ByReference extends COutString implements Structure.ByReference {}
 		
