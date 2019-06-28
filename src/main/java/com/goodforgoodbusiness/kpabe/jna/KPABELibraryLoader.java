@@ -26,14 +26,14 @@ public class KPABELibraryLoader {
 				KPABELibraryPath.addLibraryPath(path);
 				
 				for (var i = 0; i < LIBRARY_COPIES; i++) {
-					NativeLibrary.addSearchPath(LIBRARY_BASE_NAME + i, path);
+					NativeLibrary.addSearchPath(LIBRARY_BASE_NAME/* + i*/, path);
 				}
 			}
 		}
 		
 		for (var i = 0; i < LIBRARY_COPIES; i++) {
-			System.loadLibrary(LIBRARY_BASE_NAME + i);
-			LIBRARIES[i] = Native.load(LIBRARY_BASE_NAME + i, KPABELibrary.class);
+			System.loadLibrary(LIBRARY_BASE_NAME/* + i*/);
+			LIBRARIES[i] = Native.load(LIBRARY_BASE_NAME/* + i*/, KPABELibrary.class);
 		}
 	}
 	
