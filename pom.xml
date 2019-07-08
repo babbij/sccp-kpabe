@@ -6,13 +6,15 @@
 
 	<parent>
 		<groupId>org.goodforgoodbusiness</groupId>
-		<artifactId>sccp-lib</artifactId>
-		<version>0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
+		<artifactId>sccp</artifactId>
+		<version>0.2-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>kpabe</artifactId>
 	<packaging>jar</packaging>
+	<version>0.2-SNAPSHOT</version>
+	
 	<name>SCCP KP-ABE library</name>
 
 	<dependencies>		
