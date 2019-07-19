@@ -7,11 +7,11 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyPair;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import com.goodforgoodbusiness.kpabe.jna.KPABELibrary;
-import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLoader;
 import com.goodforgoodbusiness.kpabe.jna.KPABELibrary.COutString;
+import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLoader;
+import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLock;
 import com.goodforgoodbusiness.kpabe.key.KPABEPublicKey;
 import com.goodforgoodbusiness.kpabe.key.KPABEShareKey;
 
@@ -20,16 +20,16 @@ import com.goodforgoodbusiness.kpabe.key.KPABEShareKey;
  * @author ijmad
  */
 public class KPABEDecryption {
+	private static final Lock lock = KPABELibraryLock.LOCK;
+	
 	public static KPABEDecryption getInstance() {
 		return new KPABEDecryption(KPABELibraryLoader.getInstance());
 	}
 	
 	private final KPABELibrary library;	
-	private final Lock lock;
 	
 	KPABEDecryption(KPABELibrary library) {
 		this.library = library;
-		this.lock = new ReentrantLock();
 	}
 	
 	public String decrypt(String ciphertext, KeyPair keys) throws KPABEException, InvalidKeyException {

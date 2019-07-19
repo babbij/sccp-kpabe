@@ -4,12 +4,14 @@ import static com.goodforgoodbusiness.kpabe.KPABEUtil.checkResult;
 
 import java.security.InvalidKeyException;
 import java.security.PublicKey;
+import java.util.concurrent.locks.Lock;
 
 import javax.crypto.SecretKey;
 
 import com.goodforgoodbusiness.kpabe.jna.KPABELibrary;
 import com.goodforgoodbusiness.kpabe.jna.KPABELibrary.CKeyPair;
 import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLoader;
+import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLock;
 import com.goodforgoodbusiness.kpabe.key.KPABEKeyPair;
 import com.goodforgoodbusiness.kpabe.key.KPABEPublicKey;
 import com.goodforgoodbusiness.kpabe.key.KPABESecretKey;
@@ -19,6 +21,8 @@ import com.goodforgoodbusiness.kpabe.key.KPABESecretKey;
  * @author ijmad
  */
 public class KPABEKeyManager {
+	private static final Lock lock = KPABELibraryLock.LOCK;
+	
 	private static class KPABEKeyPairImpl implements KPABEKeyPair {
 		private final KPABEPublicKey publicKey;
 		private final KPABESecretKey secretKey;
@@ -45,17 +49,24 @@ public class KPABEKeyManager {
 	 * @throws KPABEException
 	 */
 	public static KPABEKeyPair newKeys() throws KPABEException {
-		KPABELibrary library = KPABELibraryLoader.getInstance();
+		lock.lock();
 		
-		CKeyPair.ByReference keyPair = new CKeyPair.ByReference();
-		
-		int result = library.newKeyPair(keyPair);
-		checkResult(result);
-		
-		return new KPABEKeyPairImpl(
-			new KPABEPublicKey(keyPair.getPublicKey()),
-			new KPABESecretKey(keyPair.getSecretKey())
-		);
+		try {
+			KPABELibrary library = KPABELibraryLoader.getInstance();
+			
+			CKeyPair.ByReference keyPair = new CKeyPair.ByReference();
+			
+			int result = library.newKeyPair(keyPair);
+			checkResult(result);
+			
+			return new KPABEKeyPairImpl(
+				new KPABEPublicKey(keyPair.getPublicKey()),
+				new KPABESecretKey(keyPair.getSecretKey())
+			);
+		}
+		finally {
+			lock.unlock();
+		}
 	}
 	
 	public static KPABEKeyPair ofKeys(KPABEPublicKey publicKey, KPABESecretKey secretKey) {

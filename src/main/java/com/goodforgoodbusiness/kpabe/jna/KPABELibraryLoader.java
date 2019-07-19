@@ -1,7 +1,5 @@
 package com.goodforgoodbusiness.kpabe.jna;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
 
@@ -13,31 +11,25 @@ import com.sun.jna.NativeLibrary;
  * @author ijmad
  */
 public class KPABELibraryLoader {
-	public static final String LIBRARY_BASE_NAME = "sccp";
-	public static final int LIBRARY_COPIES = 1;
-	
-	private static final KPABELibrary[] LIBRARIES = new KPABELibrary[LIBRARY_COPIES];
-	private static final AtomicInteger ROUND_ROBIN = new AtomicInteger(0);
+	private static final String LIBRARY_BASE_NAME = "sccp";
+	private static final KPABELibrary LIBRARY;
 	
 	static {
-		if (System.getenv("DISABLE_KPABE_AUTOLOAD") == null) {
-			var path = KPABELibraryPath.getLibraryPath();
-			if (path != null) {
-				KPABELibraryPath.addLibraryPath(path);
-				
-				for (var i = 0; i < LIBRARY_COPIES; i++) {
-					NativeLibrary.addSearchPath(LIBRARY_BASE_NAME/* + i*/, path);
+		synchronized (KPABELibraryLoader.class) {
+			if (System.getenv("DISABLE_KPABE_AUTOLOAD") == null) {
+				var path = KPABELibraryPath.getLibraryPath();
+				if (path != null) {
+					KPABELibraryPath.addLibraryPath(path);
+					NativeLibrary.addSearchPath(LIBRARY_BASE_NAME, path);
 				}
 			}
-		}
-		
-		for (var i = 0; i < LIBRARY_COPIES; i++) {
-			System.loadLibrary(LIBRARY_BASE_NAME/* + i*/);
-			LIBRARIES[i] = Native.load(LIBRARY_BASE_NAME/* + i*/, KPABELibrary.class);
+			
+			System.loadLibrary(LIBRARY_BASE_NAME);
+			LIBRARY = Native.load(LIBRARY_BASE_NAME, KPABELibrary.class);
 		}
 	}
 	
 	public static KPABELibrary getInstance() {
-		return LIBRARIES[ROUND_ROBIN.getAndIncrement() % LIBRARIES.length];
+		return LIBRARY;
 	}
 }

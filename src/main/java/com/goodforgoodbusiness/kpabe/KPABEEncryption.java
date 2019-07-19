@@ -5,11 +5,11 @@ import static com.goodforgoodbusiness.kpabe.KPABEUtil.checkResult;
 
 import java.security.KeyPair;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import com.goodforgoodbusiness.kpabe.jna.KPABELibrary;
-import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLoader;
 import com.goodforgoodbusiness.kpabe.jna.KPABELibrary.COutString;
+import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLoader;
+import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLock;
 import com.goodforgoodbusiness.kpabe.key.KPABEKeyPair;
 import com.goodforgoodbusiness.kpabe.key.KPABEShareKey;
 
@@ -18,18 +18,17 @@ import com.goodforgoodbusiness.kpabe.key.KPABEShareKey;
  * @author ijmad
  */
 public class KPABEEncryption {
+	private static final Lock lock = KPABELibraryLock.LOCK;
+	
 	public static KPABEEncryption getInstance(KPABEKeyPair keyPair) {
 		return new KPABEEncryption(KPABELibraryLoader.getInstance(), keyPair);
 	}
 	
-	private final KPABELibrary library;	
-	private final Lock lock;
-	
+	private final KPABELibrary library;
 	private final KPABEKeyPair keyPair;
 	
 	KPABEEncryption(KPABELibrary library, KPABEKeyPair keyPair) {
 		this.library = library;
-		this.lock = new ReentrantLock();
 		this.keyPair = keyPair;
 	}
 	
