@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.goodforgoodbusiness</groupId>
+		<groupId>com.colabriq</groupId>
 		<artifactId>sccp</artifactId>
 		<version>0.2-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath>
@@ -13,8 +11,6 @@
 
 	<artifactId>kpabe</artifactId>
 	<packaging>jar</packaging>
-	<version>0.2-SNAPSHOT</version>
-	
 	<name>SCCP KP-ABE library</name>
 
 	<dependencies>		
@@ -26,47 +22,34 @@
 	</dependencies>
 
 	<build>
-		<finalName>${project.artifactId}-${project.version}</finalName>
+		<finalName>${artifactId}-${version}</finalName>
 		<directory>target</directory>
 		<outputDirectory>target/classes</outputDirectory>
 		<testOutputDirectory>target/test-classes</testOutputDirectory>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<testSourceDirectory>src/test/java</testSourceDirectory>
+		
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
-			<resource>
-				<directory>lib</directory>
-			</resource>
 		</resources>
-<!-- 		<testResources>
+		
+		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>
 			</testResource>
-		</testResources> -->
+		</testResources>
+		
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
 			</plugin>
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<buildOutputDirectory>${project.build.directory}/classes</buildOutputDirectory>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>false</downloadJavadocs>
-					<useProjectReferences>false</useProjectReferences>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
