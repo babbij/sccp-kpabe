@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe;
+package com.colabriq.kpabe;
 
 public class KPABEException extends Exception {
 	private static final long serialVersionUID = 1L;

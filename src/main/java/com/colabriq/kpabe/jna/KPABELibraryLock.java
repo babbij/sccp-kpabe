@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe.jna;
+package com.colabriq.kpabe.jna;
 
 import java.util.concurrent.locks.ReentrantLock;
 

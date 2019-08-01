@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe.jna;
+package com.colabriq.kpabe.jna;
 
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;

@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe.key;
+package com.colabriq.kpabe.key;
 
 import javax.crypto.SecretKey;
 

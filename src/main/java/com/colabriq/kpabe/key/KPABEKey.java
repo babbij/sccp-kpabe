@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe.key;
+package com.colabriq.kpabe.key;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Key;

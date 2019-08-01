@@ -1,17 +1,17 @@
-package com.goodforgoodbusiness.kpabe;
+package com.colabriq.kpabe;
 
-import static com.goodforgoodbusiness.kpabe.KPABEUtil.cKeyPair;
-import static com.goodforgoodbusiness.kpabe.KPABEUtil.checkResult;
+import static com.colabriq.kpabe.KPABEUtil.cKeyPair;
+import static com.colabriq.kpabe.KPABEUtil.checkResult;
 
 import java.security.KeyPair;
 import java.util.concurrent.locks.Lock;
 
-import com.goodforgoodbusiness.kpabe.jna.KPABELibrary;
-import com.goodforgoodbusiness.kpabe.jna.KPABELibrary.COutString;
-import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLoader;
-import com.goodforgoodbusiness.kpabe.jna.KPABELibraryLock;
-import com.goodforgoodbusiness.kpabe.key.KPABEKeyPair;
-import com.goodforgoodbusiness.kpabe.key.KPABEShareKey;
+import com.colabriq.kpabe.jna.KPABELibrary;
+import com.colabriq.kpabe.jna.KPABELibrary.COutString;
+import com.colabriq.kpabe.jna.KPABELibraryLoader;
+import com.colabriq.kpabe.jna.KPABELibraryLock;
+import com.colabriq.kpabe.key.KPABEKeyPair;
+import com.colabriq.kpabe.key.KPABEShareKey;
 
 /**
  * Encryption-related things you can do with KPABE.

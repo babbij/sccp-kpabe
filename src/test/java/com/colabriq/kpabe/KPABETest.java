@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe;
+package com.colabriq.kpabe;
 
 import java.security.KeyPair;
 

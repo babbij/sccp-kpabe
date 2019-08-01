@@ -1,7 +1,7 @@
-package com.goodforgoodbusiness.kpabe;
+package com.colabriq.kpabe;
 
-import com.goodforgoodbusiness.kpabe.jna.KPABELibrary.CKeyPair;
-import com.goodforgoodbusiness.kpabe.key.KPABEKey;
+import com.colabriq.kpabe.jna.KPABELibrary.CKeyPair;
+import com.colabriq.kpabe.key.KPABEKey;
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
 

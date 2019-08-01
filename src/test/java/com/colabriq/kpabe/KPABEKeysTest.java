@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe;
+package com.colabriq.kpabe;
 
 public class KPABEKeysTest {
 	public static void main(String[] args) throws Exception {

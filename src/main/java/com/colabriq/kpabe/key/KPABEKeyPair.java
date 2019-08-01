@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.kpabe.key;
+package com.colabriq.kpabe.key;
 
 /**
  * Represents a public + secret key, as needed for encryption
